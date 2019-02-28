@@ -24,26 +24,25 @@ class NameTest extends \PHPUnit_Framework_TestCase
 
     }
 
-    public function testToLongNameThrowsException(){
+    /**
+     * @dataProvider getInvalidString
+     */
+    public function testToInvalidNameThrowsException($stringName){
 
-
-        $stringName = "incrorrect_name__more_than_10_characters";
 
         $this->expectException(InvalidNameFormatException::class);
 
         $name = new Name($stringName);
-        $name->value();
 
     }
 
-    public function testToShortNameThrowsException(){
-
-        $stringName = "incN"; //incorrectName
-
-        $this->expectException(InvalidNameFormatException::class);
-
-        $name = new Name($stringName);
-        $name->value();
+    public function getInvalidString()
+    {
+        return [
+            ["incrorrect_name__more_than_10_characters"],
+            ["incF"],
+            ["^]+++++"],
+        ];
     }
 
 }

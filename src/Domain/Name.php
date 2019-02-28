@@ -37,7 +37,10 @@ class Name
 
     private function isNameFormatIncorrect($name): bool
     {
-        return strlen($name) < self::MIN_LENGTH || strlen($name) > self::MAX_LENGTH ;
+        return
+            strlen($name) < self::MIN_LENGTH  ||
+            strlen($name) > self::MAX_LENGTH ||
+            preg_match("+[A-Za-z0-9]+",$name)==0;
     }
 
 }
