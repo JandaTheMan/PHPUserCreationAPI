@@ -13,4 +13,6 @@ interface UserRepositoryInterface
 {
 
     public function save(User $user): User;
+
+    public function getById($id): User;
 }

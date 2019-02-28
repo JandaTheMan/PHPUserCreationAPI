@@ -19,7 +19,7 @@ class UserDomainService
         $this->userRepository = $repository;
     }
 
-    public function createAndSaveUser($name, $surName, $email, $age) : User
+    public function  createAndSaveUser($name, $surName, $email, $age) : User
     {
         $user = new User($name, $surName, $email, $age);
         $this->userRepository->save($user);

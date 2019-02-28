@@ -12,11 +12,21 @@ class User
     private $age;
 
     public function __construct(Name $name,Name $surName,Email $email,Age $age){
-        $this-> name = $name->value();
-        $this-> surName = $surName>value();
-        $this-> email = $email>value();
-        $this-> age = $age>value();
-        $this-> id = 15;
+        $this->name = $name;
+        $this->surName = $surName;
+        $this->email = $email;
+        $this->age = $age;
+        $this->id =uniqid();
+    }
+
+    public static function toJson(User $user)
+    {
+        return json_encode($user);
+    }
+
+    public static function fromJson($jsonUser)
+    {
+        return json_decode($jsonUser);
     }
 
     public function getName(){
@@ -35,5 +45,8 @@ class User
         return $this->age;
     }
 
+    public function getId(){
+        return $this->id;
+    }
 
 }
