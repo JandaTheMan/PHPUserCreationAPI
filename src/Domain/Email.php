@@ -11,7 +11,6 @@ namespace Domain;
 
 
 use Domain\Exceptions\InvalidEmailFormatException;
-use Domain\Exceptions\InvalidNameFormatException;
 
 class Email
 {
