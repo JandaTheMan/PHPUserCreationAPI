@@ -8,7 +8,7 @@ use Domain\Name;
 use Domain\User;
 use Domain\UserId;
 
-require  '../../../vendor/autoload.php';
+require '../../../vendor/autoload.php';
 
 class UserTest extends \PHPUnit_Framework_TestCase
 {
@@ -18,7 +18,7 @@ class UserTest extends \PHPUnit_Framework_TestCase
         $surName= "De Barbera";
         $email = "teagujeroelpecho@barberadelvalles.masia";
         $age = 25;
-        $user = new User(new Name($name),new Name($surName),new Email($email),new Age($age), UserId::generate());
+        $user = new User(Name::build($name),Name::build($surName),Email::build($email),Age::build($age), UserId::generate());
 
         $this->assertEquals($name, $user->getName()->value());
         $this->assertEquals($surName, $user->getSurname()->value());

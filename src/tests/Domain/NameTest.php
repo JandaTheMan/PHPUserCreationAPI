@@ -18,7 +18,7 @@ class NameTest extends \PHPUnit_Framework_TestCase
     {
         $stringName = "correct";
 
-        $name = new Name($stringName);
+        $name = Name::build($stringName);
 
         self::assertEquals($stringName,$name->value());
 
@@ -32,7 +32,7 @@ class NameTest extends \PHPUnit_Framework_TestCase
 
         $this->expectException(InvalidNameFormatException::class);
 
-        $name = new Name($stringName);
+        $name = Name::build($stringName);
 
     }
 

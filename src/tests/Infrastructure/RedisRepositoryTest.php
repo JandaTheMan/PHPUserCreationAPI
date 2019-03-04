@@ -6,14 +6,14 @@
  * Time: 17:41
  */
 
-namespace tests\integration;
+namespace tests\Infrastructure;
 
 use Domain\Age;
 use Domain\Email;
 use Domain\Name;
 use Domain\User;
 use Domain\UserId;
-use Infra\RedisRepository;
+use Infrastructure\RedisRepository;
 use Predis\Client;
 
 class RedisRepositoryTest extends \PHPUnit_Framework_TestCase
@@ -33,7 +33,7 @@ class RedisRepositoryTest extends \PHPUnit_Framework_TestCase
         $email = "teagujeroelpecho@barberadelvalles.masia";
         $age = 25;
         $id = UserId::generate();
-        $user = new User(new Name($name),new Name($surName),new Email($email),new Age($age), $id);
+        $user = new User(Name::build($name),Name::build($surName),Email::build($email),Age::build($age), $id);
 
         $sut->save($user);
         $receivedUser = $sut->getById($id);

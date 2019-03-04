@@ -17,7 +17,7 @@ class EmailTest extends \PHPUnit_Framework_TestCase
     {
         $stringName = "user@correctFormat.com";
 
-        $email = new Email($stringName);
+        $email = Email::build($stringName);
 
         self::assertEquals($stringName,$email->value());
 
@@ -31,7 +31,7 @@ class EmailTest extends \PHPUnit_Framework_TestCase
 
         $this->expectException(InvalidEmailFormatException::class);
 
-        $email = new Email($stringName);
+        $email = Email::build($stringName);
 
     }
 

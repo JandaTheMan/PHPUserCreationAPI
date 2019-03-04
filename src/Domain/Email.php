@@ -18,7 +18,7 @@ class Email
 
     const MAX_LENGTH = 100;
 
-    public function __construct(string $name)
+    private function __construct(string $name)
     {
         $this->validate($name);
         $this->name = $name;
@@ -43,6 +43,11 @@ class Email
         return
             strlen($name) > self::MAX_LENGTH ||
             preg_match($pattern,$name)==0;
+    }
+
+    public static function build(string $name)
+    {
+        return new Email($name);
     }
 
 }

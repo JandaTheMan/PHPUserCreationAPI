@@ -18,7 +18,7 @@ class AgeTest extends \PHPUnit_Framework_TestCase
     {
         $intAge = 55;
 
-        $age = new Age(55);
+        $age = Age::build(55);
 
         self::assertEquals($intAge,$age->value());
 
@@ -32,7 +32,7 @@ class AgeTest extends \PHPUnit_Framework_TestCase
 
         $this->expectException(InvalidAgeFormatException::class);
 
-        $age = new Age($intAge);
+        $age = Age::build($intAge);
 
     }
 

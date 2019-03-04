@@ -6,7 +6,7 @@
  * Time: 16:47
  */
 
-namespace Infra;
+namespace Infrastructure;
 
 
 use Domain\User;

@@ -40,4 +40,9 @@ class Age
         $age > self::MAX_AGE;
     }
 
+    public static function build(int $age)
+    {
+        return new Age($age);
+    }
+
 }

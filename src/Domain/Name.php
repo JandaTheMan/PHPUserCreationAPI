@@ -15,7 +15,7 @@ class Name
     const MIN_LENGTH = 5;
     const MAX_LENGTH = 10;
 
-    public function __construct(string $name)
+    private function __construct(string $name)
     {
         $this->validate($name);
         $this->name = $name;
@@ -38,6 +38,10 @@ class Name
             strlen($name) < self::MIN_LENGTH  ||
             strlen($name) > self::MAX_LENGTH ||
             preg_match("+[A-Za-z0-9]+",$name)==0;
+    }
+
+    public static function build(string $name){
+        return new Name($name);
     }
 
 }

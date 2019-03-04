@@ -24,10 +24,10 @@ class UserDomainServiceTest extends \PHPUnit_Framework_TestCase
         $stringEmail = "teagujeroelpecho@barberadelvalles.masia";
         $intAge = 25;
 
-        $name = new Name($stringName);
-        $surName = new Name($stringSurName);
-        $email = new Email($stringEmail);
-        $age = new Age($intAge);
+        $name = Name::build($stringName);
+        $surName = Name::build($stringSurName);
+        $email = Email::build($stringEmail);
+        $age = Age::build($intAge);
         $userId = UserID::generate();
         $user = new User($name,$surName,$email,$age,$userId);
 
@@ -36,11 +36,12 @@ class UserDomainServiceTest extends \PHPUnit_Framework_TestCase
             ->method('save');
 
         $mockRepository
-            ->expects(self::once())
+            ->expects(self::exactly(2))
             ->method('getById')
             ->willReturn($user);
 
-        $result = $sut->createAndSaveUser($name,$surName,$email,$age);
+        $result = $sut->saveUser($user);
+
 
         self::assertEquals($name->value(), $result->getName()->value());
         self::assertEquals($surName->value(), $result->getSurName()->value());
@@ -55,14 +56,14 @@ class UserDomainServiceTest extends \PHPUnit_Framework_TestCase
         $sut = new UserDomainService($mockRepository);
 
         $stringName = "Javici";
-        $stringSurName= "De_Barbera";
+        $stringSurName= "De Barbera";
         $stringEmail = "teagujeroelpecho@barberadelvalles.masia";
         $intAge = 25;
 
-        $name = new Name($stringName);
-        $surName = new Name($stringSurName);
-        $email = new Email($stringEmail);
-        $age = new Age($intAge);
+        $name = Name::build($stringName);
+        $surName = Name::build($stringSurName);
+        $email = Email::build($stringEmail);
+        $age = Age::build($intAge);
         $userId = UserID::generate();
         $user = new User($name,$surName,$email,$age,$userId);
 
@@ -71,7 +72,7 @@ class UserDomainServiceTest extends \PHPUnit_Framework_TestCase
             ->method('getById')
             ->willReturn($user);
 
-        $result = $sut->createAndSaveUser($name,$surName,$email,$age);
+        $result = $sut->getUserById($userId);
 
         self::assertEquals($name->value(), $result->getName()->value());
         self::assertEquals($surName->value(), $result->getSurName()->value());

@@ -64,10 +64,10 @@ class User
     public static function fromJson($jsonUser):User
     {
         $json = json_decode($jsonUser, true);
-        $name = new Name($json["name"]);
-        $surName = new Name($json["surName"]);
-        $email = new Email($json["email"]);
-        $age = new Age($json["age"]);
+        $name = Name::build($json["name"]);
+        $surName = Name::build($json["surName"]);
+        $email = Email::build($json["email"]);
+        $age = Age::build($json["age"]);
         $id = UserId::build($json["id"]);
         $user = new User($name,$surName,$email,$age,$id);
         return $user;

@@ -19,10 +19,8 @@ class UserDomainService
         $this->userRepository = $repository;
     }
 
-    public function createAndSaveUser(Name $name,Name $surName,Email $email,Age $age) : User
+    public function saveUser(User $user) : User
     {
-        $id = UserId::generate();
-        $user = new User($name, $surName, $email, $age, $id);
         $this->userRepository->save($user);
         return $this->userRepository->getById($user->getId());
     }
