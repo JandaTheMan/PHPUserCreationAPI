@@ -8,10 +8,7 @@
 
 namespace Domain;
 
-
-
 use Domain\Exceptions\InvalidNameFormatException;
-
 class Name
 {
     private $name;

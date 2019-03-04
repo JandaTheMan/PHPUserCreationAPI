@@ -12,7 +12,7 @@ namespace Domain;
 interface UserRepositoryInterface
 {
 
-    public function save(User $user): User;
+    public function save(User $user): void;
 
-    public function getById($id): User;
+    public function getById(UserId $id): User;
 }

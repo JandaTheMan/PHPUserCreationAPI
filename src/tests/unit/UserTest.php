@@ -6,6 +6,7 @@ use Domain\Age;
 use Domain\Email;
 use Domain\Name;
 use Domain\User;
+use Domain\UserId;
 
 require  '../../../vendor/autoload.php';
 
@@ -17,11 +18,11 @@ class UserTest extends \PHPUnit_Framework_TestCase
         $surName= "De Barbera";
         $email = "teagujeroelpecho@barberadelvalles.masia";
         $age = 25;
-        $user = new User(new Name($name),new Name($surName),new Email($email),new Age($age));
+        $user = new User(new Name($name),new Name($surName),new Email($email),new Age($age), UserId::generate());
 
-        $this->assertEquals($name, $user->getName());
-        $this->assertEquals($surName, $user->getSurname());
-        $this->assertEquals($email, $user->getEmail());
-        $this->assertEquals($age, $user->getAge());
+        $this->assertEquals($name, $user->getName()->value());
+        $this->assertEquals($surName, $user->getSurname()->value());
+        $this->assertEquals($email, $user->getEmail()->value());
+        $this->assertEquals($age, $user->getAge()->value());
     }
 }

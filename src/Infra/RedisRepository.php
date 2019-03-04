@@ -10,26 +10,28 @@ namespace Infra;
 
 
 use Domain\User;
+use Domain\UserId;
 use Domain\UserRepositoryInterface;
-use Redis;
+use Predis\Client;
 
 class RedisRepository implements UserRepositoryInterface
 {
 
     private $redis;
 
-    public function __construct(Redis $redis)
+    public function __construct(Client $redis)
     {
         $this->redis = $redis;
     }
-    public function save(User $user): User{
-
-
-         $this->redis->save($user->getId(), User::toJson($user));
+    public function save(User $user): void
+    {
+        $jsonUser = User::toJson($user);
+        $this->redis->set($user->getId()->value(),$jsonUser);
     }
 
-    public function getById($id): User{
-        $jsonUser = $this->redis->get($id);
+    public function getById(UserId $id): User
+    {
+        $jsonUser = $this->redis->get($id->value());
         return User::fromJson($jsonUser);
 
     }
