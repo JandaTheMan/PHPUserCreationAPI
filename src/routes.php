@@ -1,5 +1,6 @@
 <?php
 
+use Controllers\UserController;
 use Slim\Http\Request;
 use Slim\Http\Response;
 

@@ -30,7 +30,7 @@ class UserApplicationTest extends \PHPUnit_Framework_TestCase
         $sut = new UserApplicationService($userDomainService);
 
         $stringName = "Javici";
-        $stringSurName= "De_Barbera";
+        $stringSurName= "De Barbera";
         $stringEmail = "teagujeroelpecho@barberadelvalles.masia";
         $intAge = 25;
         $user = new User(Name::build($stringName),Name::build($stringSurName),Email::build($stringEmail),Age::build($intAge), UserId::generate());

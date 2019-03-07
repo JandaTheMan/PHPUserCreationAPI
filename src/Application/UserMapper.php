@@ -14,6 +14,7 @@ use Domain\Email;
 use Domain\Name;
 use Domain\User;
 use Domain\UserId;
+use Psr\Http\Message\StreamInterface;
 
 class UserMapper
 {
@@ -56,5 +57,27 @@ class UserMapper
     {
         return UserId::build($idDTO->getId());
     }
+
+    public static function fromArrayToUserDTOWithoutID(array $json_decode) : UserDTO
+    {
+        return new UserDTO(
+            $json_decode["name"],
+            $json_decode["surName"],
+            $json_decode["email"],
+            $json_decode["age"],
+            ""
+        );
+    }
+
+    public static function fromUserDTOtoJSON(userDTO $createdUser) : string
+    {
+        return json_encode($createdUser);
+    }
+
+    public static function fromIDtoDTO($requestedUserId)
+    {
+        return new IdDTO($requestedUserId);
+    }
+
 
 }

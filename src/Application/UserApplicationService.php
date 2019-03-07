@@ -8,8 +8,6 @@
 
 namespace Application;
 
-
-use Domain\User;
 use Domain\UserDomainService;
 use Domain\Application;
 
